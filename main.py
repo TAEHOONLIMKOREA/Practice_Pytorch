@@ -1,5 +1,14 @@
+import os
 import torch
-import torch.nn as nn
+from torch import nn
+from torch.autograd import Variable
+from torch.utils.data import DataLoader
+from torchvision import transforms
+from torchvision.datasets import MNIST
+from torchvision.utils import save_image
+
+#  맨 처음 한번만 다운로드 하기
+dataset = MNIST('./data', transform=img_transform, download=True)
 
 class SimpleNN(nn.Module):
     def __init__(self):
