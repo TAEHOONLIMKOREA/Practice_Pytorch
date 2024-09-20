@@ -2,10 +2,10 @@ import torch
 from torch import nn
 
 class encoder(nn.Module):
-    def __init__(self, latent_dim=2):
+    def __init__(self, latent_dim=4):
         super(encoder, self).__init__()
         self.encoder = nn.Sequential(
-            nn.Linear(64 * 64, 1024),
+            nn.Linear(64 * 64 * 3, 1024),
             nn.BatchNorm1d(num_features=1024),
             nn.LeakyReLU(True),
             nn.Dropout(0.3),
@@ -33,7 +33,7 @@ class encoder(nn.Module):
                     nn.init.zeros_(m.bias)
 
 class decoder(nn.Module):
-    def __init__(self, latent_dim=2):
+    def __init__(self, latent_dim=4):
         super(decoder, self).__init__()
         self.decoder = nn.Sequential(
             nn.Linear(latent_dim, 128),
@@ -48,7 +48,7 @@ class decoder(nn.Module):
             nn.BatchNorm1d(num_features=1024),
             nn.LeakyReLU(True),
             nn.Dropout(0.3),
-            nn.Linear(1024, 64 * 64),
+            nn.Linear(1024, 64 * 64 * 3),
             nn.Tanh()
         )
         self._initialize_weights()
