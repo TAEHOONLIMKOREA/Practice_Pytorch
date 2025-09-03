@@ -67,7 +67,7 @@ def main():
             loss.backward()
             encoder_optimizer.step()
             decoder_optimizer.step()
-
+        
         print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}')
 
         if epoch % 10 == 0:

@@ -5,7 +5,7 @@ class encoder(nn.Module):
     def __init__(self, latent_dim=2):
         super(encoder, self).__init__()
         self.encoder = nn.Sequential(
-            nn.Linear(64 * 64, 1024),
+            nn.Linear(28 * 28, 1024),
             nn.BatchNorm1d(num_features=1024),
             nn.LeakyReLU(True),
             nn.Dropout(0.3),
@@ -48,7 +48,7 @@ class decoder(nn.Module):
             nn.BatchNorm1d(num_features=1024),
             nn.LeakyReLU(True),
             nn.Dropout(0.3),
-            nn.Linear(1024, 64 * 64),
+            nn.Linear(1024, 28 * 28),
             nn.Tanh()
         )
         self._initialize_weights()
